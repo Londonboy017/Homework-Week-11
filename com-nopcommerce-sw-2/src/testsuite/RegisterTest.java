@@ -4,6 +4,7 @@ import browserfactory.BaseTest;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 public class RegisterTest extends BaseTest {
     String baseUrl = "https://demo.nopcommerce.com/";
@@ -33,7 +34,7 @@ public class RegisterTest extends BaseTest {
         //find Register and click
         WebElement register = driver.findElement(By.className("ico-register"));
         register.click();
-//find radio element and click
+        //find radio element and click
         WebElement radio = driver.findElement(By.id("gender-male"));
         radio.click();
         //find first name and send value
@@ -42,16 +43,18 @@ public class RegisterTest extends BaseTest {
         //find last name and send value
         WebElement lastName = driver.findElement(By.name("LastName"));
         lastName.sendKeys("Little");
-        //find date of birth fields and send values to all
-        WebElement dayOfDOB = driver.findElement(By.name("DateOfBirthDay"));
-        dayOfDOB.sendKeys("1");
-        WebElement monthOfDOB = driver.findElement(By.name("DateOfBirthMonth"));
-        monthOfDOB.sendKeys("April");
-        WebElement yearOfDOB = driver.findElement(By.name("DateOfBirthYear"));
-        yearOfDOB.sendKeys("1998");
+        //use SELECT class for dropdown of DOB
+        Select DOB = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthDay']")));
+        DOB.selectByVisibleText("11");
+
+        Select month = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthMonth']")));
+        month.selectByIndex(9);
+
+        Select year = new Select(driver.findElement(By.xpath("//select[@name='DateOfBirthYear']")));
+        year.selectByVisibleText("1998");
         //find emailfield and send values
         WebElement emailField = driver.findElement(By.id("Email"));
-        emailField.sendKeys("stuart1234@gmail.com");
+        emailField.sendKeys("stuart123@gmail.com");
         //find companyfield and send values
         WebElement companyField = driver.findElement(By.name("Company"));
         companyField.sendKeys("apple-fb");
@@ -79,6 +82,4 @@ public class RegisterTest extends BaseTest {
     public void tearDown() {
         closeBrowser();
     }
-
-
 }
