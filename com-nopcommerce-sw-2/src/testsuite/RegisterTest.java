@@ -58,7 +58,7 @@ public class RegisterTest extends BaseTest {
         //find companyfield and send values
         WebElement companyField = driver.findElement(By.name("Company"));
         companyField.sendKeys("apple-fb");
-        //find newsletter checkbox and click
+        //find newsletter checkbox and click to unselect it
         WebElement newsletterField = driver.findElement(By.cssSelector("#Newsletter"));
         newsletterField.click();
         //find password field and send values
