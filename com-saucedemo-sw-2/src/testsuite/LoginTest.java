@@ -51,9 +51,11 @@ public class LoginTest extends BaseTest {
         WebElement loginButton = driver.findElement(By.id("login-button"));
         loginButton.click();
 //count 'PRODUCTS ' on webpage by using item label
-        List<WebElement> productsList = driver.findElements(By.className("inventory_item_label"));
+        List<WebElement> productsList = driver.findElements(By.cssSelector("div.inventory_item"));
         int sizeOfList = productsList.size();
         System.out.println("Count of products displayed on page is : "+sizeOfList);
+        int expecteditems =6;
+        Assert.assertEquals("List of products mismatch",expecteditems,sizeOfList);
     }
     @After
     public void tearDown() {
